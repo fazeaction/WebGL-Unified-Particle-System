@@ -6,7 +6,7 @@ var cfg;
     var Cfg = function() {
         this.pingPong = true;
         this.debugTexture = false;
-        this.scene = 1;
+        this.scene = 0;
     };
 
     var init = function() {

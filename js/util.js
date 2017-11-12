@@ -42,7 +42,6 @@ window.loadTexture = (function() {
 
 window.loadShaderProgram = (function() {
     'use strict';
-
     var compileShader = function(gl, shaderSource, shaderType) {
         var shader = gl.createShader(shaderType);
         gl.shaderSource(shader, shaderSource);
@@ -77,43 +76,7 @@ window.loadShaderProgram = (function() {
     };
 })();
 
-window.readyModelForDraw = function(prog, m) {
-    gl.useProgram(prog.prog);
 
-    // if (m.colmap) {
-    //     gl.activeTexture(gl.TEXTURE3);
-    //     gl.bindTexture(gl.TEXTURE_2D, m.colmap);
-    //     gl.uniform1i(prog.u_colmap, 3);
-    // }
-
-    // if (m.normap) {
-    //     gl.activeTexture(gl.TEXTURE4);
-    //     gl.bindTexture(gl.TEXTURE_2D, m.normap);
-    //     gl.uniform1i(prog.u_normap, 4);
-    // }
-
-    //gl.uniform1f(prog.u_specmap, m.specExp);
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, m.attributes);
-    
-    gl.enableVertexAttribArray(prog.a_position);
-    gl.vertexAttribPointer(prog.a_position, m.posInfo.size, m.posInfo.type, false, m.posInfo.stride, m.posInfo.offset);
-
-    // gl.enableVertexAttribArray(prog.a_normal);
-    // gl.vertexAttribPointer(prog.a_normal, m.norInfo.size, m.norInfo.type, false, m.norInfo.stride, m.norInfo.offset);
-
-    // gl.enableVertexAttribArray(prog.a_uv);
-    // gl.vertexAttribPointer(prog.a_uv, m.uvInfo.size, m.uvInfo.type, false, m.uvInfo.stride, m.uvInfo.offset);
-
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, m.idx);
-};
-
-window.drawReadyModel = function(m) {
-    // TODO for TA in future: matrix transform for multiple hierachy gltf models
-    // reference: https://github.com/CIS565-Fall-2016/Project5A-WebGL-Forward-Plus-Shading-with-glTF/blob/master/js/forwardPlusRenderer/forwardPlusRenderer.js#L201
-
-    gl.drawElements(m.gltf.mode, m.gltf.indices.length, m.gltf.indicesComponentType, 0);
-};
 
 window.getScissorForLight = (function() {
     // Pre-allocate for performance - avoids additional allocation
